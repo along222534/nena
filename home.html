@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surprise!</title>
+    <!-- เพิ่มลิงก์ Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fce4ec;
+            color: #b03060;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        header {
+            background-color: #f8bbd0;
+            padding: 20px 0;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin: 0;
+        }
+
+        .animate__animated.animate__heartBeat {
+            animation-iteration-count: infinite; /* เพิ่มให้เคลื่อนไหวซ้ำ */
+        }
+
+        .content {
+            margin: 20px auto;
+            max-width: 600px; /* กำหนดขนาดสูงสุดให้สมดุล */
+            padding: 10px;
+        }
+
+        img {
+            max-width: 100%; /* ทำให้รูปภาพตอบสนองตามขนาดจอ */
+            height: auto;
+            border-radius: 10px; /* เพิ่มมุมโค้ง */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* เพิ่มเงา */
+        }
+
+        audio {
+            margin-top: 20px;
+            width: 100%; /* ให้ตัวเล่นเพลงปรับขนาดตามความกว้าง */
+        }
+
+        p {
+            font-size: 1.2em;
+            margin-top: 10px;
+            color: #880e4f;
+        }
+
+        footer {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f8bbd0;
+            color: #b03060;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <!-- เพิ่มคลาส Animate.css -->
+        <h1 class="animate__animated animate__heartBeat">🎉 Nena Nena 🎉</h1>
+    </header>
+
+    <div class="content">
+        <p>จุ๊บมั๊วว❤️</p>
+        <img src="รูป.jpg" alt="รูปคู่" width="350" />
+        <audio controls autoplay>
+            <source src="เพลงรัก - Three Man Down Official MV.mp3" type="audio/mpeg">
+            เพลงไม่สามารถเล่นได้
+        </audio>
+        <p>รักเนี่ยยย ❤️</p>
+    </div>
+
+    <footer>
+        ❤️ Nena ❤️
+    </footer>
+</body>
+</html>

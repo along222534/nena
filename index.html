@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surprise Nena</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+   <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fdf5e6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        header {
+            padding: 20px;
+            background-color: #f7d6e0;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            color: #b03060;
+        }
+        .password-container {
+            margin-top: 50px;
+        }
+        input[type="password"], input[type="text"] {
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            color: white;
+            background-color: #b03060;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #d94a7a;
+        }
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
+        .toggle-container {
+            margin-top: 10px;
+        }
+        .toggle-container input {
+            margin-left: 5px;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function checkPassword() {
+            const password = document.getElementById('password').value;
+            const correctPassword = '15/09/2566';
+            if (password === correctPassword) {
+                Swal.fire({
+                    title: 'ถูกต้องงับ!',
+                    text: 'ยินดีด้วย! ไปกันต่ออออ 🎉',
+                    icon: 'success',
+                    confirmButtonText: 'go go go!',
+                }).then(() => {
+                    window.location.href = 'home.html';
+                });
+            } else {
+                Swal.fire({
+                    title: 'ม่ายยถูกก!',
+                    text: 'รหัสผ่านไม่ถูกต้อง. ลองใหม่น้าาา.',
+                    icon: 'error',
+                    confirmButtonText: 'แง่ว',
+                });
+            }
+        }
+
+        function togglePasswordVisibility() {
+            const passwordField = document.getElementById('password');
+            const passwordToggle = document.getElementById('toggle-password');
+            passwordField.type = passwordToggle.checked ? 'text' : 'password';
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const passwordInput = document.getElementById('password');
+            passwordInput.addEventListener('keypress', (event) => {
+                if (event.key === 'Enter') {
+                    checkPassword();
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <h1 class="animate__animated animate__heartBeat">🎁 Happy Nena Day 🎁</h1>
+    </header>
+
+    <div class="password-container">
+        <p>กรอกรหัสผ่าน</p>
+        <input type="password" id="password" placeholder="00/00/0000">
+        <div class="toggle-container">
+            <label>
+                <input type="checkbox" id="toggle-password" onclick="togglePasswordVisibility()"> แสดงรหัสผ่าน
+            </label>
+        </div>
+        <button onclick="checkPassword()">คลิกเยยย</button>
+    </div>
+    <footer> ❤️ ❤️ ❤️</footer>
+</body>
+</html>
