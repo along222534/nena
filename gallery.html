@@ -61,6 +61,29 @@
       height: 100%;
       object-fit: cover;
     }
+
+    /* ปุ่มไปหน้า Video */
+    .go-to-video-btn {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #ff6f61;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-align: center;
+      display: block;
+      margin: 20px auto;
+    }
+
+    .go-to-video-btn:hover {
+      background-color: #e55b50;
+    }
+
+    /* เอาขีดใต้ลิงก์ออก */
+    a {
+      text-decoration: none;
+    }
   </style>
 </head>
 <body>
@@ -68,6 +91,12 @@
   <!-- ส่วนหัว -->
   <header style="text-align: center; padding: 20px; background-color: #f0f0f0;">
     <h1 class="animate__animated animate__wobble">Memories gallery</h1>
+    <!-- ปุ่มไปที่หน้า Video -->
+    <a href="video.html">
+      <button class="go-to-video-btn">
+        Go to Video 🎥
+      </button>
+    </a>
   </header>
 
   <!-- แกลเลอรีรูปภาพแบบกริด -->
