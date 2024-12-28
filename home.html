@@ -1,88 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Surprise!</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #fce4ec;
-            color: #b03060;
-            text-align: center;
-            margin: 0;
-        }
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #fce4ec;
+        color: #b03060;
+        text-align: center;
+        margin: 0;
+      }
 
-        header {
-            background-color: #f8bbd0;
-            padding: 20px 0;
-        }
+      header {
+        background-color: #f8bbd0;
+        padding: 20px 0;
+      }
 
-        header h1 {
-            font-size: 2.5em;
-            margin: 0;
-        }
+      header h1 {
+        font-size: 2.5em;
+        margin: 0;
+      }
 
-        .content {
-            margin: 20px auto;
-            max-width: 600px;
-            padding: 10px;
-        }
+      .content {
+        margin: 20px auto;
+        max-width: 600px;
+        padding: 10px;
+      }
 
-        img {
-            max-width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
+      img {
+        max-width: 100%;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
 
-        button {
-            font-size: 1.0em;
-            padding: 10px 20px;
-            background-color: #e91e63;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            position: absolute;
-            top: 1px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 1;
-        }
+      button {
+        font-size: 1em;
+        padding: 10px 20px;
+        background-color: #e91e63;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        position: absolute;
+        top: 1px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1;
+      }
 
-        audio {
-            margin-top: 20px;
-            width: 100%;
-        }
+      audio {
+        margin-top: 20px;
+        width: 100%;
+      }
 
-        p {
-            font-size: 2em;
-        }
+      p {
+        font-size: 2em;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <h1 class="animate__animated animate__heartBeat">🎉 Nena Nena 🎉</h1>
+      <h1 class="animate__animated animate__heartBeat">🎉 Nena Nena 🎉</h1>
     </header>
 
     <div class="content">
-        <div style="position: relative; display: inline-block;">
-            <button onclick="goToGallery()">จุ๊บมั๊วว❤️</button>
-            <img src="รูป.jpg" alt="รูปคู่" width="350" />
-        </div>
-        <audio controls autoplay>
-            <source src="เพลงรัก - Three Man Down Official MV.mp3" type="audio/mpeg">
-            เพลงไม่สามารถเล่นได้
-        </audio>
-        <p>love ❤️</p>
+      <div style="position: relative; display: inline-block">
+        <button onclick="goToGallery()">จุ๊บมั๊วว❤️</button>
+        <img src="รูป.jpg" alt="รูปคู่" width="350" />
+      </div>
+      <audio controls autoplay>
+        <source
+          src="เพลงรัก - Three Man Down Official MV.mp3"
+          type="audio/mpeg"
+        />
+        เพลงไม่สามารถเล่นได้
+      </audio>
+      <p>love ❤️</p>
     </div>
 
     <script>
-        function goToGallery() {
-            window.location.href = "gallery.html";
-        }
+      function goToGallery() {
+        window.location.href = "gallery.html";
+      }
     </script>
-</body>
+  </body>
 </html>

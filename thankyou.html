@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thank You</title>
+    <style>
+      @font-face {
+        font-family: "custom-font";
+        src: url(FC\ Home\ Regular\ ver\ 1.01.ttf);
+      }
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #ffe4e1;
+        color: #b03060;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+      }
+
+      header {
+        background-color: #f8bbd0;
+        padding: 20px;
+      }
+
+      header h1 {
+        font-size: 2.5em;
+        margin: 0;
+        color: #880e4f;
+      }
+
+      .content {
+        margin: 20px auto;
+        max-width: 600px;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      .content p {
+        font-size: 1.5em;
+        color: #b03060;
+        line-height: 1.6;
+        opacity: 0; /* เริ่มต้นซ่อนข้อความ */
+        transform: translateY(20px); /* เลื่อนลงมานิดหน่อย */
+        transition: opacity 0.8s ease, transform 0.8s ease; /* เพิ่มเอฟเฟกต์ */
+      }
+
+      .content p.visible {
+        opacity: 1; /* แสดงข้อความ */
+        transform: translateY(0); /* กลับมาอยู่ที่เดิม */
+      }
+
+      footer {
+        margin-top: 20px;
+        padding: 20px;
+        background-color: #f8bbd0;
+        color: #880e4f;
+        font-size: 1.2em;
+        ;
+      }
+
+      .heart {
+        color: red;
+        font-size: 2em;
+        animation: beat 1s infinite;
+      }
+
+      @keyframes beat {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.2);
+        }
+      }
+
+      .countdown {
+        font-size: 2em;
+        font-weight: bold;
+        color: #880e4f;
+        margin-top: 20px;
+      }
+
+      button {
+        margin-top: 20px;
+        padding: 10px 20px;
+        font-size: 1.2em;
+        background-color: #e91e63;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      button:hover {
+        background-color: #c2185b;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>กราบนีน่า🙇‍♂️🙇‍♂️</h1>
+    </header>
+
+    <div id="countdown" class="countdown">3</div>
+
+    <div id="content" class="content">
+      <p>ขอบคุณที่ยังให้โอกาสเค้านะคะคนสวย</p>
+      <p>เค้ารักหนูมากๆเยยยเค้าไม่ทำตัวตูดอีกแย้วว</p>
+      <p>อยู่กับเค้านานๆนะคะคนสวย 😘 😘 😘 </p>
+      <p class="heart">จุ๊บบ💖</p>
+      <button onclick="goBack()">กลับไปหน้าแรก</button>
+    </div>
+
+    <footer>made by cheeta ❤️<br /> </footer>
+
+    <script>
+      function goBack() {
+        window.location.href = "home.html";
+      }
+
+      // การนับถอยหลัง
+      const countdownElement = document.getElementById("countdown");
+      const contentElement = document.getElementById("content");
+      const paragraphs = contentElement.querySelectorAll("p"); // ดึงข้อความทุกบรรทัด
+      let timeLeft = 3;
+
+      const countdownInterval = setInterval(() => {
+        countdownElement.textContent = timeLeft;
+        timeLeft--;
+
+        if (timeLeft < 0) {
+          clearInterval(countdownInterval);
+          countdownElement.style.display = "none"; // ซ่อนการนับถอยหลัง
+
+          // แสดงข้อความทีละบรรทัด
+          paragraphs.forEach((paragraph, index) => {
+            setTimeout(() => {
+              paragraph.classList.add("visible");
+            }, index * 1000); // ดีเลย์ 1 วินาทีต่อบรรทัด
+          });
+        }
+      }, 1000); // นับถอยหลังทุก 1 วินาที
+    </script>
+  </body>
+</html>

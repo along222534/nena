@@ -1,122 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Video Surprise</title>
     <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #ffffff, #8dc990);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            color: #333;
-        }
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #ffffff, #8dc990);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        color: #333;
+      }
 
-        .video-container {
-            position: relative;
-            width: 90%; /* ปรับขนาดให้ใหญ่ขึ้น */
-            max-width: 1200px; /* ปรับขนาดสูงสุด */
-            height: 70vh; /* ปรับความสูงตามต้องการ */
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            border-radius: 15px;
-            overflow: hidden;
-            background: #fff;
-        }
+      .video-container {
+        position: relative;
+        width: 90%;
+        max-width: 1200px;
+        height: 70vh;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        border-radius: 15px;
+        overflow: hidden;
+        background: #fff;
+      }
 
-        video {
-            width: 100%;
-            height: 100%; /* ทำให้วิดีโอเต็มพื้นที่ */
-            object-fit: cover; /* ให้วิดีโอเต็มพื้นที่กรอบโดยไม่ทำให้เสียอัตราส่วน */
-            display: block;
-            border-radius: 15px;
-        }
+      video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        border-radius: 15px;
+      }
 
-        .play-button {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: rgba(255, 255, 255, 0.8);
-            border: none;
-            border-radius: 50%;
-            padding: 20px;
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        }
+      .play-button {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(255, 255, 255, 0.8);
+        border: none;
+        border-radius: 50%;
+        padding: 20px;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      }
 
-        .play-button:hover {
-            background-color: rgba(255, 255, 255, 1);
-        }
+      .play-button:hover {
+        background-color: rgba(255, 255, 255, 1);
+      }
 
-        .play-icon {
-            width: 30px;
-            height: 30px;
-            border: solid transparent;
-            border-width: 15px 0 15px 25px;
-            border-left-color: #000000;
-        }
+      .play-icon {
+        width: 30px;
+        height: 30px;
+        border: solid transparent;
+        border-width: 15px 0 15px 25px;
+        border-left-color: #000000;
+      }
 
-        .countdown {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 2rem;
-            color: #333;
-            font-weight: bold;
-        }
+      .countdown {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 2rem;
+        color: #333;
+        font-weight: bold;
+      }
+
+      .thankyou-button {
+        display: none;
+        position: absolute;
+        bottom: 10%;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 10px 20px;
+        font-size: 1.2em;
+        background-color: #e91e63;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .thankyou-button:hover {
+        background-color: #c2185b;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="video-container">
-        <video id="video" poster="poster.jpg">
-            <source src="nena.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        <button class="play-button" id="playButton">
-            <div class="play-icon"></div>
-        </button>
-        <div class="countdown" id="countdown"></div>
+      <video id="video" poster="poster.jpg">
+        <source src="nena.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      <button class="play-button" id="playButton">
+        <div class="play-icon"></div>
+      </button>
+      <div class="countdown" id="countdown"></div>
+      <button class="thankyou-button" id="thankYouButton" onclick="goToThankYou()">go to last page</button>
     </div>
 
     <script>
-        const video = document.getElementById('video');
-        const playButton = document.getElementById('playButton');
-        const countdown = document.getElementById('countdown');
+      const video = document.getElementById("video");
+      const playButton = document.getElementById("playButton");
+      const countdown = document.getElementById("countdown");
+      const thankYouButton = document.getElementById("thankYouButton");
 
-        playButton.addEventListener('click', () => {
-            let timeLeft = 3; // Set countdown time (3 seconds)
+      playButton.addEventListener("click", () => {
+        let timeLeft = 3; // Set countdown time (3 seconds)
 
-            // Hide play button
-            playButton.style.display = 'none';
+        // Hide play button
+        playButton.style.display = "none";
 
-            // Show countdown
-            countdown.textContent = timeLeft;
+        // Show countdown
+        countdown.textContent = timeLeft;
 
-            // Countdown logic
-            const countdownInterval = setInterval(() => {
-                timeLeft--;
-                countdown.textContent = timeLeft;
+        // Countdown logic
+        const countdownInterval = setInterval(() => {
+          timeLeft--;
+          countdown.textContent = timeLeft;
 
-                if (timeLeft <= 0) {
-                    clearInterval(countdownInterval);
-                    countdown.textContent = ''; // Clear countdown text
-                    video.play(); // Start playing the video
-                }
-            }, 1000); // Update countdown every 1 second
-        });
+          if (timeLeft <= 0) {
+            clearInterval(countdownInterval);
+            countdown.textContent = ""; // Clear countdown text
+            video.play(); // Start playing the video
+          }
+        }, 1000); // Update countdown every 1 second
+      });
 
-        video.addEventListener('ended', () => {
-            // Reset play button when video ends
-            playButton.style.display = 'flex';
-        });
+      video.addEventListener("ended", () => {
+        // Show "Thank You" button when video ends
+        thankYouButton.style.display = "block";
+      });
+
+      function goToThankYou() {
+        window.location.href = "thankyou.html";
+      }
     </script>
-</body>
+  </body>
 </html>
