@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>gallery</title>
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <style>
+    /* กริดรูปภาพ */
+    .gallery-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 16px;
+      margin: 20px;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: auto;
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .caption {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      right: 10px;
+      padding: 10px;
+      background: rgba(0, 0, 0, 0.6);
+      color: white;
+      font-size: 16px;
+      text-align: center;
+      display: none;
+    }
+
+    .gallery-item:hover .caption {
+      display: block;
+    }
+
+    /* การตั้งค่าของ Swiper */
+    .swiper-container {
+      width: 100%;
+      height: 400px;
+      margin: 20px auto;
+    }
+
+    .swiper-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ส่วนหัว -->
+  <header style="text-align: center; padding: 20px; background-color: #f0f0f0;">
+    <h1 class="animate__animated animate__wobble">Memories gallery</h1>
+  </header>
+
+  <!-- แกลเลอรีรูปภาพแบบกริด -->
+  <section class="gallery-container">
+    <div class="gallery-item">
+      <img src="4.jpg" alt="ภาพที่ 1">
+      <p class="caption">ดูหนังโหดดๆๆ🥵🥵</p>
+    </div>
+    <div class="gallery-item">
+      <img src="5.jpg" alt="ภาพที่ 2">
+      <p class="caption">อันนี้สวยเกิน ติดใจจ😍😘</p>
+    </div>
+    <div class="gallery-item">
+      <img src="3.jpg" alt="ภาพที่ 3">
+      <p class="caption">อ้อนๆ😻😻</p>
+    </div>
+    <div class="gallery-item">
+        <img src="8.jpg" alt="ภาพที่ 4">
+        <p class="caption">คิคิ</p>
+      </div>
+      <div class="gallery-item">
+        <img src="9.jpg" alt="ภาพที่ 5">
+        <p class="caption">นีน่าทำยัย 👁👄👁</p>
+      </div>
+      <div class="gallery-item">
+        <img src="6.jpg" alt="ภาพที่ 6">
+        <p class="caption">ว๊ายย น่ารักเกิน🫶🫶</p>
+      </div>
+        <div class="gallery-item">
+            <img src="7.jpg" alt="ภาพที่ 7">
+            <p class="caption">นีน่าตาหาย🔥🔥</p>
+      
+      <!-- เพิ่มภาพอื่นๆ ตามต้องการ -->
+  </section>
+
+  <!-- แกลเลอรีแบบสไลด์ (Swiper) -->
+  <section class="swiper-container">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <img src="12.jpg" alt="ภาพที่ 1">
+        <p class="caption">.</p>
+      </div>
+      <div class="swiper-slide">
+        <img src="11.jpg" alt="ภาพที่ 2">
+        <p class="caption">.</p>
+      </div>
+      <div class="swiper-slide">
+        <img src="10.jpg" alt="ภาพที่ 3">
+        <p class="caption">.</p>
+      </div>
+      <!-- เพิ่มภาพอื่นๆ ตามต้องการ -->
+    </div>
+    <!-- Add Pagination -->
+    <div class="swiper-pagination"></div>
+    <!-- Add Navigation -->
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+  </section>
+
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script>
+    var swiper = new Swiper('.swiper-container', {
+      loop: true,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    });
+  </script>
+
+</body>
+</html>

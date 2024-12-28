@@ -6,6 +6,10 @@
     <title>Surprise Nena</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
    <style>
+    @font-face {
+        font-family:"custom-font";
+        src: url(FC\ Home\ Regular\ ver\ 1.01.ttf);
+    }
         body {
             font-family: Arial, sans-serif;
             background-color: #fdf5e6;
@@ -13,6 +17,14 @@
             margin: 0;
             padding: 0;
             text-align: center;
+        }
+        header, .password-container, footer {
+            display: none; /* ซ่อนเนื้อหาก่อน */
+        }
+        .countdown-container {
+            font-size: 2em;
+            margin-top: 20%;
+            color: #b03060;
         }
         header {
             padding: 20px;
@@ -57,6 +69,23 @@
     </style>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
+        function startCountdown() {
+            const countdownContainer = document.getElementById('countdown');
+            let seconds = 3;
+
+            const countdownInterval = setInterval(() => {
+                countdownContainer.textContent = `เหลืออีก ${seconds--} วินาที`;
+
+                if (seconds < 0) {
+                    clearInterval(countdownInterval);
+                    countdownContainer.style.display = 'none';
+                    document.querySelector('header').style.display = 'block';
+                    document.querySelector('.password-container').style.display = 'block';
+                    document.querySelector('footer').style.display = 'block';
+                }
+            }, 1000);
+        }
+
         function checkPassword() {
             const password = document.getElementById('password').value;
             const correctPassword = '15/09/2566';
@@ -92,12 +121,14 @@
                     checkPassword();
                 }
             });
+            startCountdown();
         });
     </script>
 </head>
 <body>
+    <div id="countdown" class="countdown-container">กำลังเริ่ม...</div>
     <header>
-        <h1 class="animate__animated animate__heartBeat">🎁 Happy Nena Day 🎁</h1>
+        <h1 class="animate__animated animate__heartBeat">🎁  Nena Day 🎁</h1>
     </header>
 
     <div class="password-container">
