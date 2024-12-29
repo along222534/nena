@@ -5,118 +5,93 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Thank You</title>
     <style>
-      @font-face {
-        font-family: "custom-font";
-        src: url(FC\ Home\ Regular\ ver\ 1.01.ttf);
-      }
       body {
-        font-family: Arial, sans-serif;
-        background-color: #ffe4e1;
-        color: #b03060;
+        font-family: "Arial", sans-serif;
+        background-color: #e8f5e9; /* สีเขียวอ่อน */
+        color: #2e7d32; /* สีเขียวเข้ม */
         text-align: center;
         margin: 0;
         padding: 0;
       }
 
       header {
-        background-color: #f8bbd0;
         padding: 20px;
-      }
-
-      header h1 {
         font-size: 2.5em;
-        margin: 0;
-        color: #880e4f;
+        color: #1b5e20; /* สีเขียวเข้ม */
+        font-weight: bold;
+        background-color: #c8e6c9; /* สีเขียวอ่อน */
+        border-bottom: 1px solid #a5d6a7; /* สีเขียวอ่อน */
       }
 
       .content {
-        margin: 20px auto;
+        margin: 40px auto;
         max-width: 600px;
         padding: 20px;
-        background-color: #fff;
-        border-radius: 15px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        background-color: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       }
 
       .content p {
         font-size: 1.5em;
-        color: #b03060;
+        color: #000; /* เปลี่ยนเป็นสีดำ */
         line-height: 1.6;
-        opacity: 0; /* เริ่มต้นซ่อนข้อความ */
-        transform: translateY(20px); /* เลื่อนลงมานิดหน่อย */
-        transition: opacity 0.8s ease, transform 0.8s ease; /* เพิ่มเอฟเฟกต์ */
+        opacity: 0; /* ซ่อนข้อความเริ่มต้น */
+        transition: opacity 0.8s ease-in-out;
       }
 
       .content p.visible {
-        opacity: 1; /* แสดงข้อความ */
-        transform: translateY(0); /* กลับมาอยู่ที่เดิม */
+        opacity: 1;
       }
 
       footer {
         margin-top: 20px;
-        padding: 20px;
-        background-color: #f8bbd0;
-        color: #880e4f;
-        font-size: 1.2em;
-        ;
-      }
-
-      .heart {
-        color: red;
-        font-size: 2em;
-        animation: beat 1s infinite;
-      }
-
-      @keyframes beat {
-        0%,
-        100% {
-          transform: scale(1);
-        }
-        50% {
-          transform: scale(1.2);
-        }
+        padding: 15px;
+        font-size: 0.9em;
+        color: #388e3c; /* สีเขียวกลาง */
+        background-color: #c8e6c9;
+        border-top: 1px solid #a5d6a7;
       }
 
       .countdown {
-        font-size: 2em;
+        font-size: 2.5em;
         font-weight: bold;
-        color: #880e4f;
-        margin-top: 20px;
+        color: #1b5e20;
+        margin-top: 30px;
+        font-family: "Arial", sans-serif;
       }
 
       button {
         margin-top: 20px;
-        padding: 10px 20px;
-        font-size: 1.2em;
-        background-color: #e91e63;
-        color: white;
+        padding: 10px 25px;
+        font-size: 1em;
+        color: #fff;
+        background-color: #388e3c; /* สีเขียวกลาง */
         border: none;
-        border-radius: 5px;
+        border-radius: 8px;
         cursor: pointer;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.3s ease;
       }
 
       button:hover {
-        background-color: #c2185b;
+        background-color: #2e7d32; /* สีเขียวเข้มขึ้น */
       }
     </style>
   </head>
   <body>
     <header>
-      <h1>กราบนีน่า🙇‍♂️🙇‍♂️</h1>
+      🙏 🙏
     </header>
 
-    <div id="countdown" class="countdown">3</div>
+    <div id="countdown" class="countdown">กำลังเริ่ม...</div>
 
     <div id="content" class="content">
-      <p>ขอบคุณที่ยังให้โอกาสเค้านะคะคนสวย</p>
-      <p>เค้ารักหนูมากๆเยยยเค้าไม่ทำตัวตูดอีกแย้วว</p>
-      <p>อยู่กับเค้านานๆนะคะคนสวย 😘 😘 😘 </p>
-      <p class="heart">จุ๊บบ💖</p>
+      <p id="single-line-text"> </p>
       <button onclick="goBack()">กลับไปหน้าแรก</button>
     </div>
 
-    <footer>made by cheeta ❤️<br /> </footer>
+    <footer>Made by Cheeta❤️ </footer>
 
     <script>
       function goBack() {
@@ -125,26 +100,39 @@
 
       // การนับถอยหลัง
       const countdownElement = document.getElementById("countdown");
-      const contentElement = document.getElementById("content");
-      const paragraphs = contentElement.querySelectorAll("p"); // ดึงข้อความทุกบรรทัด
+      const singleLineTextElement = document.getElementById("single-line-text");
+      const messages = [
+        "ขอบคุณที่ยังให้โอกาสเค้านะคะคนสวย",
+        "เค้ารักหนูมากๆเยยยเค้าไม่ทำตัวตูดอีกแย้วว",
+        "อยู่กับเค้านานๆนะคะคนสวย 😘 😘 😘 ",
+        "จุ๊บบ 💖",
+      ];
       let timeLeft = 3;
 
-      const countdownInterval = setInterval(() => {
-        countdownElement.textContent = timeLeft;
-        timeLeft--;
+      // แสดง "กำลังเริ่ม..." 1.5 วินาทีก่อนเริ่มนับถอยหลัง
+      setTimeout(() => {
+        const countdownInterval = setInterval(() => {
+          countdownElement.textContent = timeLeft;
+          timeLeft--;
 
-        if (timeLeft < 0) {
-          clearInterval(countdownInterval);
-          countdownElement.style.display = "none"; // ซ่อนการนับถอยหลัง
+          if (timeLeft < 0) {
+            clearInterval(countdownInterval);
+            countdownElement.style.display = "none"; // ซ่อนการนับถอยหลัง
 
-          // แสดงข้อความทีละบรรทัด
-          paragraphs.forEach((paragraph, index) => {
-            setTimeout(() => {
-              paragraph.classList.add("visible");
-            }, index * 1000); // ดีเลย์ 1 วินาทีต่อบรรทัด
-          });
-        }
-      }, 1000); // นับถอยหลังทุก 1 วินาที
+            // แสดงข้อความทีละบรรทัดในบรรทัดเดียว
+            let messageIndex = 0;
+            const messageInterval = setInterval(() => {
+              singleLineTextElement.textContent = messages[messageIndex];
+              singleLineTextElement.classList.add("visible");
+              messageIndex++;
+
+              if (messageIndex >= messages.length) {
+                clearInterval(messageInterval); // หยุดแสดงข้อความเมื่อครบแล้ว
+              }
+            }, 1500); // เปลี่ยนข้อความทุก 1.5 วินาที
+          }
+        }, 1000); // นับถอยหลังทุก 1 วินาที
+      }, 1500); // รอ 1.5 วินาทีก่อนเริ่มนับถอยหลัง
     </script>
   </body>
 </html>

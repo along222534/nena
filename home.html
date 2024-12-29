@@ -10,21 +10,24 @@
     />
     <style>
       body {
-        font-family: Arial, sans-serif;
-        background-color: #fce4ec;
-        color: #b03060;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #e8f5e9;
+        color: #388e3c;
         text-align: center;
         margin: 0;
+        padding: 0;
       }
 
       header {
-        background-color: #f8bbd0;
+        background-color: #a5d6a7;
         padding: 20px 0;
+        border-bottom: 3px solid #81c784;
       }
 
       header h1 {
         font-size: 2.5em;
         margin: 0;
+        color: #2e7d32;
       }
 
       .content {
@@ -35,33 +38,46 @@
 
       img {
         max-width: 100%;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        border-radius: 15px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+        transition: transform 0.3s;
+      }
+
+      img:hover {
+        transform: scale(1.05);
       }
 
       button {
         font-size: 1em;
         padding: 10px 20px;
-        background-color: #e91e63;
+        background-color: #66bb6a;
         color: white;
         border: none;
-        border-radius: 5px;
+        border-radius: 8px;
         cursor: pointer;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
         position: absolute;
-        top: 1px;
+        top: 10px;
         left: 50%;
         transform: translateX(-50%);
         z-index: 1;
+        transition: background-color 0.3s, box-shadow 0.3s;
+      }
+
+      button:hover {
+        background-color: #4caf50;
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.25);
       }
 
       audio {
         margin-top: 20px;
         width: 100%;
+        border-radius: 5px;
       }
 
       p {
         font-size: 2em;
+        color: #43a047;
       }
     </style>
   </head>
@@ -72,7 +88,7 @@
 
     <div class="content">
       <div style="position: relative; display: inline-block">
-        <button onclick="goToGallery()">จุ๊บมั๊วว❤️</button>
+        <button onclick="goToGallery()">จุ๊บมั๊วว ❤️</button>
         <img src="รูป.jpg" alt="รูปคู่" width="350" />
       </div>
       <audio controls autoplay>
@@ -82,7 +98,7 @@
         />
         เพลงไม่สามารถเล่นได้
       </audio>
-      <p>love ❤️</p>
+      <p>Love you 💚</p>
     </div>
 
     <script>
