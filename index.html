@@ -13,67 +13,142 @@
         font-family: "custom-font";
         src: url(FC\ Home\ Regular\ ver\ 1.01.ttf);
       }
+
       body {
         font-family: Arial, sans-serif;
-        background-color: #e8f5e9;
+        background: linear-gradient(135deg, #e8f5e9, #a5d6a7);
         color: #2e7d32;
         margin: 0;
         padding: 0;
         text-align: center;
+        overflow: hidden; /* ปิด scroll bar เพื่อให้ดูสะอาด */
       }
+
       header,
       .password-container,
       footer {
-        display: none; /* ซ่อนเนื้อหาก่อน */
+        display: none;
       }
+
       .countdown-container {
         font-size: 2em;
+        font-weight: bold;
         margin-top: 20%;
         color: #43a047;
+        animation: fadeInDown 2s;
       }
+
       header {
         padding: 20px;
-        background-color: #a5d6a7;
+        background-color: #1b5e20;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        animation: bounceIn 1.5s;
       }
+
       header h1 {
         margin: 0;
-        font-size: 2.5em;
-        color: #1b5e20;
+        font-size: 2.8em;
+        color: #fff;
       }
+
       .password-container {
         margin-top: 50px;
+        animation: fadeInUp 2s ease-in-out;
       }
+
       input[type="password"],
       input[type="text"] {
-        padding: 10px;
-        font-size: 1em;
+        padding: 12px;
+        font-size: 1.2em;
         border: 1px solid #a5d6a7;
         border-radius: 5px;
         background-color: #f1f8e9;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        outline: none;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
       }
+
+      input[type="password"]:focus,
+      input[type="text"]:focus {
+        transform: scale(1.1);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+      }
+
       button {
-        padding: 10px 20px;
-        font-size: 1em;
+        padding: 12px 25px;
+        font-size: 1.1em;
         color: white;
-        background-color: #43a047;
+        background: linear-gradient(135deg, #43a047, #2e7d32);
         border: none;
-        border-radius: 5px;
+        border-radius: 8px;
         cursor: pointer;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: background-color 0.3s ease, transform 0.2s ease;
       }
+
       button:hover {
-        background-color: #388e3c;
+        background: linear-gradient(135deg, #66bb6a, #43a047);
+        transform: scale(1.1);
       }
+
       .toggle-container {
         margin-top: 10px;
+        font-size: 0.9em;
       }
-      .toggle-container input {
-        margin-left: 5px;
-      }
+
       footer {
         margin-top: 50px;
         padding: 10px;
-        background-color: #a5d6a7;
-        color: #2e7d32;
+        background-color: #1b5e20;
+        color: #fff;
+        box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.3);
+        animation: slideInUp 2s ease-in-out;
+      }
+
+      /* Keyframes for custom animation */
+      @keyframes fadeInDown {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes bounceIn {
+        0% {
+          transform: scale(0.5);
+          opacity: 0;
+        }
+        50% {
+          transform: scale(1.2);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      @keyframes slideInUp {
+        from {
+          transform: translateY(100%);
+        }
+        to {
+          transform: translateY(0);
+        }
       }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -98,7 +173,7 @@
 
       function checkPassword() {
         const password = document.getElementById("password").value;
-        const correctPassword = "15/09/2566";
+        const correctPassword = "15/09/2549";
         if (password === correctPassword) {
           Swal.fire({
             title: "ถูกต้องงับ!",
@@ -156,6 +231,6 @@
       </div>
       <button onclick="checkPassword()">คลิกเยยย</button>
     </div>
-    <footer>❤️ Love ❤️</footer>
+    <footer>❤️ ❤️ ❤️</footer>
   </body>
 </html>

@@ -1,148 +1,178 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Video Surprise</title>
-    <style>
-      body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background: linear-gradient(135deg, #ffffff, #8dc990);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        color: #333;
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Video Surprise</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <style>
+    /* ตั้งค่าพื้นฐาน */
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #ffffff, #8dc990);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: #333;
+    }
+
+    .video-container {
+      position: relative;
+      width: 90%;
+      max-width: 800px;
+      aspect-ratio: 16 / 9; /* กำหนดสัดส่วน 16:9 */
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+      border-radius: 20px;
+      overflow: hidden;
+      background: #ffffff;
+      animation: fadeInUp 1.5s ease-out;
+    }
+
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .play-button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: rgba(255, 255, 255, 0.8);
+      border: none;
+      border-radius: 50%;
+      padding: 25px;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+      animation: pulse 2s infinite;
+      transition: background-color 0.3s;
+    }
+
+    .play-button:hover {
+      background-color: rgba(255, 255, 255, 1);
+    }
+
+    .play-icon {
+      width: 40px;
+      height: 40px;
+      border: solid transparent;
+      border-width: 20px 0 20px 30px;
+      border-left-color: #000;
+    }
+
+    .countdown {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 3rem;
+      color: #333;
+      font-weight: bold;
+      animation: fadeIn 1s ease-out;
+    }
+
+    .thankyou-button {
+      display: none;
+      position: absolute;
+      bottom: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 12px 30px;
+      font-size: 1.2em;
+      background-color: #43a047;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .thankyou-button:hover {
+      background-color: #388e3c;
+      transform: scale(1.05);
+    }
+
+    /* Animation */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
       }
-
-      .video-container {
-        position: relative;
-        width: 90%;
-        max-width: 1200px;
-        height: 70vh;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        border-radius: 15px;
-        overflow: hidden;
-        background: #fff;
+      to {
+        opacity: 1;
+        transform: translateY(0);
       }
+    }
 
-      video {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
-        border-radius: 15px;
+    @keyframes pulse {
+      0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
       }
-
-      .play-button {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background-color: rgba(255, 255, 255, 0.8);
-        border: none;
-        border-radius: 50%;
-        padding: 20px;
-        cursor: pointer;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      50% {
+        transform: translate(-50%, -50%) scale(1.1);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
       }
+    }
+  </style>
+</head>
+<body>
+  <div class="video-container">
+    <video id="video" poster="poster.jpg">
+      <source src="nena.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+    <button class="play-button" id="playButton">
+      <div class="play-icon"></div>
+    </button>
+    <div class="countdown" id="countdown"></div>
+    <button class="thankyou-button" id="thankYouButton" onclick="goToThankYou()">Go to Last Page</button>
+  </div>
 
-      .play-button:hover {
-        background-color: rgba(255, 255, 255, 1);
-      }
+  <script>
+    const video = document.getElementById("video");
+    const playButton = document.getElementById("playButton");
+    const countdown = document.getElementById("countdown");
+    const thankYouButton = document.getElementById("thankYouButton");
 
-      .play-icon {
-        width: 30px;
-        height: 30px;
-        border: solid transparent;
-        border-width: 15px 0 15px 25px;
-        border-left-color: #000000;
-      }
+    playButton.addEventListener("click", () => {
+      let timeLeft = 3; // Set countdown time (3 seconds)
 
-      .countdown {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        font-size: 2rem;
-        color: #333;
-        font-weight: bold;
-      }
+      // Hide play button
+      playButton.style.display = "none";
 
-      .thankyou-button {
-        display: none;
-        position: absolute;
-        bottom: 10%;
-        left: 50%;
-        transform: translateX(-50%);
-        padding: 10px 20px;
-        font-size: 1.2em;
-        background-color: #43a047;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-      }
+      // Show countdown
+      countdown.textContent = timeLeft;
 
-      .thankyou-button:hover {
-        background-color: #388e3c;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="video-container">
-      <video id="video" poster="poster.jpg">
-        <source src="nena.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-      <button class="play-button" id="playButton">
-        <div class="play-icon"></div>
-      </button>
-      <div class="countdown" id="countdown"></div>
-      <button class="thankyou-button" id="thankYouButton" onclick="goToThankYou()">go to last page</button>
-    </div>
-
-    <script>
-      const video = document.getElementById("video");
-      const playButton = document.getElementById("playButton");
-      const countdown = document.getElementById("countdown");
-      const thankYouButton = document.getElementById("thankYouButton");
-
-      playButton.addEventListener("click", () => {
-        let timeLeft = 3; // Set countdown time (3 seconds)
-
-        // Hide play button
-        playButton.style.display = "none";
-
-        // Show countdown
+      // Countdown logic
+      const countdownInterval = setInterval(() => {
+        timeLeft--;
         countdown.textContent = timeLeft;
 
-        // Countdown logic
-        const countdownInterval = setInterval(() => {
-          timeLeft--;
-          countdown.textContent = timeLeft;
+        if (timeLeft <= 0) {
+          clearInterval(countdownInterval);
+          countdown.textContent = ""; // Clear countdown text
+          video.play(); // Start playing the video
+        }
+      }, 1000); // Update countdown every 1 second
+    });
 
-          if (timeLeft <= 0) {
-            clearInterval(countdownInterval);
-            countdown.textContent = ""; // Clear countdown text
-            video.play(); // Start playing the video
-          }
-        }, 1000); // Update countdown every 1 second
-      });
+    video.addEventListener("ended", () => {
+      // Show "Thank You" button when video ends
+      thankYouButton.style.display = "block";
+    });
 
-      video.addEventListener("ended", () => {
-        // Show "Thank You" button when video ends
-        thankYouButton.style.display = "block";
-      });
-
-      function goToThankYou() {
-        window.location.href = "thankyou.html";
-      }
-    </script>
-  </body>
+    function goToThankYou() {
+      window.location.href = "countdown.html";
+    }
+  </script>
+</body>
 </html>

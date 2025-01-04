@@ -3,16 +3,60 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>gallery</title>
+  <title>Memories Gallery</title>
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
   <style>
+    /* ตั้งค่าทั่วไป */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f8e8;
+      color: #2e7d32;
+    }
+
+    header {
+      text-align: center;
+      padding: 20px;
+      background-color: #a5d6a7;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      font-size: 2.5em;
+      margin: 0;
+      animation: bounceIn 1s ease-out;
+    }
+
+    /* ปุ่มไปหน้า Video */
+    .go-to-video-btn {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #43a047;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .go-to-video-btn:hover {
+      background-color: #388e3c;
+    }
+
+    /* เอาขีดใต้ลิงก์ออก */
+    a {
+      text-decoration: none;
+    }
+
     /* กริดรูปภาพ */
     .gallery-container {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
       gap: 16px;
-      margin: 20px;
+      padding: 20px;
     }
 
     .gallery-item {
@@ -20,6 +64,7 @@
       overflow: hidden;
       border-radius: 8px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      background: #fff;
     }
 
     .gallery-item img {
@@ -51,9 +96,12 @@
 
     /* การตั้งค่าของ Swiper */
     .swiper-container {
-      width: 100%;
+      width: 90%;
       height: 400px;
       margin: 20px auto;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     }
 
     .swiper-slide img {
@@ -62,40 +110,23 @@
       object-fit: cover;
     }
 
-    /* ปุ่มไปหน้า Video */
-    .go-to-video-btn {
-      padding: 10px 20px;
-      font-size: 16px;
-      background-color: #43a047;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      text-align: center;
-      display: block;
-      margin: 20px auto;
+    /* ปุ่ม Navigation */
+    .swiper-button-next, .swiper-button-prev {
+      color: #2e7d32;
     }
 
-    .go-to-video-btn:hover {
-      background-color: #388e3c;
-    }
-
-    /* เอาขีดใต้ลิงก์ออก */
-    a {
-      text-decoration: none;
+    .swiper-pagination-bullet-active {
+      background: #2e7d32;
     }
   </style>
 </head>
 <body>
 
   <!-- ส่วนหัว -->
-  <header style="text-align: center; padding: 20px; background-color: #f0f0f0;">
-    <h1 class="animate__animated animate__wobble">Memories gallery</h1>
-    <!-- ปุ่มไปที่หน้า Video -->
+  <header>
+    <h1 class="animate__animated animate__wobble">Memories Gallery</h1>
     <a href="video.html">
-      <button class="go-to-video-btn">
-        Go to Video 🎥
-      </button>
+      <button class="go-to-video-btn">Go to Video 🎥</button>
     </a>
   </header>
 
@@ -114,22 +145,21 @@
       <p class="caption">อ้อนๆ😻😻</p>
     </div>
     <div class="gallery-item">
-        <img src="8.jpg" alt="ภาพที่ 4">
-        <p class="caption">คิคิ</p>
-      </div>
-      <div class="gallery-item">
-        <img src="9.jpg" alt="ภาพที่ 5">
-        <p class="caption">นีน่าทำยัย 👁👄👁</p>
-      </div>
-      <div class="gallery-item">
-        <img src="6.jpg" alt="ภาพที่ 6">
-        <p class="caption">ว๊ายย น่ารักเกิน🫶🫶</p>
-      </div>
-        <div class="gallery-item">
-            <img src="7.jpg" alt="ภาพที่ 7">
-            <p class="caption">นีน่าตาหาย🔥🔥</p>
-      
-      <!-- เพิ่มภาพอื่นๆ ตามต้องการ -->
+      <img src="8.jpg" alt="ภาพที่ 4">
+      <p class="caption">คิคิ</p>
+    </div>
+    <div class="gallery-item">
+      <img src="9.jpg" alt="ภาพที่ 5">
+      <p class="caption">นีน่าทำยัย 👁👄👁</p>
+    </div>
+    <div class="gallery-item">
+      <img src="6.jpg" alt="ภาพที่ 6">
+      <p class="caption">ว๊ายย น่ารักเกิน🫶🫶</p>
+    </div>
+    <div class="gallery-item">
+      <img src="7.jpg" alt="ภาพที่ 7">
+      <p class="caption">นีน่าตาหาย🔥🔥</p>
+    </div>
   </section>
 
   <!-- แกลเลอรีแบบสไลด์ (Swiper) -->
@@ -137,17 +167,13 @@
     <div class="swiper-wrapper">
       <div class="swiper-slide">
         <img src="12.jpg" alt="ภาพที่ 1">
-        <p class="caption">.</p>
       </div>
       <div class="swiper-slide">
         <img src="11.jpg" alt="ภาพที่ 2">
-        <p class="caption">.</p>
       </div>
       <div class="swiper-slide">
         <img src="10.jpg" alt="ภาพที่ 3">
-        <p class="caption">.</p>
       </div>
-      <!-- เพิ่มภาพอื่นๆ ตามต้องการ -->
     </div>
     <!-- Add Pagination -->
     <div class="swiper-pagination"></div>

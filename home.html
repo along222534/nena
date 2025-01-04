@@ -11,73 +11,102 @@
     <style>
       body {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background-color: #e8f5e9;
+        background: linear-gradient(135deg, #e8f5e9, #a5d6a7);
         color: #388e3c;
         text-align: center;
         margin: 0;
         padding: 0;
+        overflow-x: hidden;
       }
 
       header {
         background-color: #a5d6a7;
         padding: 20px 0;
         border-bottom: 3px solid #81c784;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
       }
 
       header h1 {
-        font-size: 2.5em;
+        font-size: 2.8em;
         margin: 0;
         color: #2e7d32;
+        animation: pulse 2s infinite;
       }
 
       .content {
         margin: 20px auto;
         max-width: 600px;
-        padding: 10px;
+        padding: 20px;
       }
 
       img {
         max-width: 100%;
         border-radius: 15px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
-        transition: transform 0.3s;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s, box-shadow 0.3s;
       }
 
       img:hover {
-        transform: scale(1.05);
+        transform: scale(1.1);
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.25);
       }
 
       button {
-        font-size: 1em;
-        padding: 10px 20px;
-        background-color: #66bb6a;
+        font-size: 1.2em;
+        padding: 12px 25px;
+        background: linear-gradient(135deg, #66bb6a, #43a047);
         color: white;
         border: none;
         border-radius: 8px;
         cursor: pointer;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         position: absolute;
         top: 10px;
         left: 50%;
         transform: translateX(-50%);
         z-index: 1;
-        transition: background-color 0.3s, box-shadow 0.3s;
+        transition: background-color 0.3s, box-shadow 0.3s, transform 0.2s;
       }
 
       button:hover {
-        background-color: #4caf50;
-        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.25);
+        background: linear-gradient(135deg, #4caf50, #388e3c);
+        transform: scale(1.1);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
       }
 
       audio {
         margin-top: 20px;
         width: 100%;
         border-radius: 5px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        outline: none;
       }
 
       p {
-        font-size: 2em;
-        color: #43a047;
+        font-size: 2.2em;
+        color: #2e7d32;
+        font-weight: bold;
+        text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+        animation: bounce 2s infinite;
+      }
+
+      /* แอนิเมชันแบบกำหนดเอง */
+      @keyframes pulse {
+        0%, 100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.1);
+        }
+      }
+
+      @keyframes bounce {
+        0%, 100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
       }
     </style>
   </head>

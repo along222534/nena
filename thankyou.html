@@ -6,133 +6,127 @@
     <title>Thank You</title>
     <style>
       body {
-        font-family: "Arial", sans-serif;
-        background-color: #e8f5e9; /* สีเขียวอ่อน */
-        color: #2e7d32; /* สีเขียวเข้ม */
-        text-align: center;
         margin: 0;
-        padding: 0;
+        font-family: "Arial", sans-serif;
+        background: linear-gradient(135deg, #e8f5e9, #ffffff); /* สีเขียวอ่อน */
+        background-image: radial-gradient(#c8e6c9 5%, transparent 5%), radial-gradient(#ffffff 5%, transparent 5%);
+        background-size: 50px 50px;
+        background-position: 0 0, 25px 25px;
+        animation: moveBackground 5s linear infinite; /* เพิ่มการเคลื่อนไหว */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        color: #2e7d32;
       }
 
-      header {
-        padding: 20px;
-        font-size: 2.5em;
-        color: #1b5e20; /* สีเขียวเข้ม */
-        font-weight: bold;
-        background-color: #c8e6c9; /* สีเขียวอ่อน */
-        border-bottom: 1px solid #a5d6a7; /* สีเขียวอ่อน */
+      @keyframes moveBackground {
+        0% {
+          background-position: 0 0, 25px 25px;
+        }
+        100% {
+          background-position: 100px 100px, 125px 125px;
+        }
       }
 
       .content {
         margin: 40px auto;
         max-width: 600px;
-        padding: 20px;
+        padding: 20px 30px;
         background-color: #ffffff;
-        border-radius: 12px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        border-radius: 20px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        border: 2px dashed #a5d6a7;
+        text-align: center;
       }
 
-      .content p {
-        font-size: 1.5em;
-        color: #000; /* เปลี่ยนเป็นสีดำ */
-        line-height: 1.6;
-        opacity: 0; /* ซ่อนข้อความเริ่มต้น */
-        transition: opacity 0.8s ease-in-out;
-      }
-
-      .content p.visible {
-        opacity: 1;
-      }
-
-      footer {
-        margin-top: 20px;
-        padding: 15px;
-        font-size: 0.9em;
-        color: #388e3c; /* สีเขียวกลาง */
-        background-color: #c8e6c9;
-        border-top: 1px solid #a5d6a7;
-      }
-
-      .countdown {
+      header {
         font-size: 2.5em;
+        color: #388e3c;
         font-weight: bold;
-        color: #1b5e20;
-        margin-top: 30px;
-        font-family: "Arial", sans-serif;
+        margin-bottom: 20px;
+      }
+
+      .typewriter-container {
+        display: inline-block;
+        white-space: nowrap;
+        overflow: hidden;
+        font-size: 1.3em;
+        line-height: 1.8;
+        text-align: center;
+        margin-bottom: 20px;
       }
 
       button {
         margin-top: 20px;
-        padding: 10px 25px;
+        padding: 12px 25px;
         font-size: 1em;
-        color: #fff;
-        background-color: #388e3c; /* สีเขียวกลาง */
+        color: #ffffff;
+        background-color: #43a047;
         border: none;
-        border-radius: 8px;
+        border-radius: 12px;
         cursor: pointer;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         transition: background-color 0.3s ease;
       }
 
       button:hover {
-        background-color: #2e7d32; /* สีเขียวเข้มขึ้น */
+        background-color: #2e7d32;
       }
     </style>
   </head>
   <body>
-    <header>
-      🙏 🙏
-    </header>
-
-    <div id="countdown" class="countdown">กำลังเริ่ม...</div>
-
-    <div id="content" class="content">
-      <p id="single-line-text"> </p>
+    <div class="content">
+      <header>🙇‍♂️ 🙇‍♂️</header>
+      <div class="typewriter-container" id="typewriter"></div>
       <button onclick="goBack()">กลับไปหน้าแรก</button>
     </div>
 
-    <footer>Made by Cheeta❤️ </footer>
+    <!-- เพิ่มเพลง -->
+    <audio id="backgroundMusic" src="เพลงรักเพลงแรก-สร้างด้วย-Clipchamp.mp3" preload="auto"></audio>
 
     <script>
-      function goBack() {
-        window.location.href = "home.html";
+      const messages = [
+        "ขอบคุณที่ยังให้โอกาสเค้านะคะคนสวย 💕",
+        "เค้ารักหนูมากๆเยยย เค้าไม่ทำตัวตูดอีกแย้วว 😘",
+        "อยู่กับเค้านานๆนะคะคนสวย 💖",
+        "จุ๊บบบบ 💋",
+      ];
+
+      const typewriterContainer = document.getElementById("typewriter");
+      const backgroundMusic = document.getElementById("backgroundMusic");
+
+      // เริ่มเล่นเพลงเมื่อโหลดหน้า
+      window.onload = () => {
+        backgroundMusic.play();
+      };
+
+      let messageIndex = 0;
+
+      function typeMessage() {
+        if (messageIndex < messages.length) {
+          const message = messages[messageIndex];
+          let charIndex = 0;
+          typewriterContainer.textContent = ""; // เคลียร์ข้อความเก่า
+
+          const typingInterval = setInterval(() => {
+            typewriterContainer.textContent += message[charIndex];
+            charIndex++;
+
+            if (charIndex === message.length) {
+              clearInterval(typingInterval);
+              messageIndex++;
+              setTimeout(typeMessage, 1500); // รอ 1.5 วินาทีก่อนแสดงข้อความถัดไป
+            }
+          }, 100); // เพิ่มตัวอักษรทุก 0.1 วินาที
+        }
       }
 
-      // การนับถอยหลัง
-      const countdownElement = document.getElementById("countdown");
-      const singleLineTextElement = document.getElementById("single-line-text");
-      const messages = [
-        "ขอบคุณที่ยังให้โอกาสเค้านะคะคนสวย",
-        "เค้ารักหนูมากๆเยยยเค้าไม่ทำตัวตูดอีกแย้วว",
-        "อยู่กับเค้านานๆนะคะคนสวย 😘 😘 😘 ",
-        "จุ๊บบ 💖",
-      ];
-      let timeLeft = 3;
+      function goBack() {
+        window.location.href = "home.html"; // ลิงก์ไปยังหน้าแรก
+      }
 
-      // แสดง "กำลังเริ่ม..." 1.5 วินาทีก่อนเริ่มนับถอยหลัง
-      setTimeout(() => {
-        const countdownInterval = setInterval(() => {
-          countdownElement.textContent = timeLeft;
-          timeLeft--;
-
-          if (timeLeft < 0) {
-            clearInterval(countdownInterval);
-            countdownElement.style.display = "none"; // ซ่อนการนับถอยหลัง
-
-            // แสดงข้อความทีละบรรทัดในบรรทัดเดียว
-            let messageIndex = 0;
-            const messageInterval = setInterval(() => {
-              singleLineTextElement.textContent = messages[messageIndex];
-              singleLineTextElement.classList.add("visible");
-              messageIndex++;
-
-              if (messageIndex >= messages.length) {
-                clearInterval(messageInterval); // หยุดแสดงข้อความเมื่อครบแล้ว
-              }
-            }, 1500); // เปลี่ยนข้อความทุก 1.5 วินาที
-          }
-        }, 1000); // นับถอยหลังทุก 1 วินาที
-      }, 1500); // รอ 1.5 วินาทีก่อนเริ่มนับถอยหลัง
+      typeMessage(); // เริ่มแสดงข้อความ
     </script>
   </body>
 </html>
