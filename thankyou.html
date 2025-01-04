@@ -55,6 +55,7 @@
         line-height: 1.8;
         text-align: center;
         margin-bottom: 20px;
+        display: none; /* ซ่อนข้อความเริ่มต้น */
       }
 
       button {
@@ -79,6 +80,7 @@
     <div class="content">
       <header>🙇‍♂️ 🙇‍♂️</header>
       <div class="typewriter-container" id="typewriter"></div>
+      <button id="startMusicButton">กดปุ่มนี้</button>
       <button onclick="goBack()">กลับไปหน้าแรก</button>
     </div>
 
@@ -95,13 +97,17 @@
 
       const typewriterContainer = document.getElementById("typewriter");
       const backgroundMusic = document.getElementById("backgroundMusic");
-
-      // เริ่มเล่นเพลงเมื่อโหลดหน้า
-      window.onload = () => {
-        backgroundMusic.play();
-      };
+      const startMusicButton = document.getElementById("startMusicButton");
 
       let messageIndex = 0;
+
+      // เริ่มเล่นเพลงเมื่อกดปุ่ม
+      startMusicButton.addEventListener("click", () => {
+        backgroundMusic.play(); // เริ่มเพลง
+        startMusicButton.style.display = "none"; // ซ่อนปุ่มเริ่มเพลง
+        typewriterContainer.style.display = "inline-block"; // แสดงข้อความ
+        typeMessage(); // เริ่มแสดงข้อความ
+      });
 
       function typeMessage() {
         if (messageIndex < messages.length) {
@@ -125,8 +131,6 @@
       function goBack() {
         window.location.href = "home.html"; // ลิงก์ไปยังหน้าแรก
       }
-
-      typeMessage(); // เริ่มแสดงข้อความ
     </script>
   </body>
 </html>
