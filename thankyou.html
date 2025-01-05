@@ -8,16 +8,17 @@
       body {
         margin: 0;
         font-family: "Arial", sans-serif;
-        background: linear-gradient(135deg, #e8f5e9, #ffffff); /* สีเขียวอ่อน */
+        background: linear-gradient(135deg, #e8f5e9, #ffffff);
         background-image: radial-gradient(#c8e6c9 5%, transparent 5%), radial-gradient(#ffffff 5%, transparent 5%);
         background-size: 50px 50px;
         background-position: 0 0, 25px 25px;
-        animation: moveBackground 5s linear infinite; /* เพิ่มการเคลื่อนไหว */
+        animation: moveBackground 5s linear infinite;
         display: flex;
         justify-content: center;
         align-items: center;
         height: 100vh;
         color: #2e7d32;
+        overflow: hidden;
       }
 
       @keyframes moveBackground {
@@ -38,6 +39,7 @@
         box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
         border: 2px dashed #a5d6a7;
         text-align: center;
+        position: relative;
       }
 
       header {
@@ -55,7 +57,29 @@
         line-height: 1.8;
         text-align: center;
         margin-bottom: 20px;
-        display: none; /* ซ่อนข้อความเริ่มต้น */
+        display: none;
+      }
+
+      .typewriter-container span {
+        animation: typingColor 2s infinite;
+      }
+
+      @keyframes typingColor {
+        0% {
+          color: #388e3c;
+        }
+        25% {
+          color: #43a047;
+        }
+        50% {
+          color: #66bb6a;
+        }
+        75% {
+          color: #81c784;
+        }
+        100% {
+          color: #388e3c;
+        }
       }
 
       button {
@@ -68,11 +92,53 @@
         border-radius: 12px;
         cursor: pointer;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        transition: background-color 0.3s ease;
+        transition: background-color 0.3s ease, transform 0.3s;
       }
 
       button:hover {
         background-color: #2e7d32;
+        transform: scale(1.05);
+      }
+
+      .heart {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background-color: #e57373;
+        transform: rotate(-45deg);
+        animation: floatUp 3s ease-out infinite;
+        opacity: 0;
+      }
+
+      .heart:before,
+      .heart:after {
+        content: "";
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background-color: #e57373;
+        border-radius: 50%;
+      }
+
+      .heart:before {
+        top: -10px;
+        left: 0;
+      }
+
+      .heart:after {
+        left: 10px;
+        top: 0;
+      }
+
+      @keyframes floatUp {
+        0% {
+          transform: translate(-50%, 0) scale(1);
+          opacity: 1;
+        }
+        100% {
+          transform: translate(-50%, -150%) scale(0.5);
+          opacity: 0;
+        }
       }
     </style>
   </head>
@@ -84,7 +150,6 @@
       <button onclick="goBack()">กลับไปหน้าแรก</button>
     </div>
 
-    <!-- เพิ่มเพลง -->
     <audio id="backgroundMusic" src="เพลงรักเพลงแรก-สร้างด้วย-Clipchamp.mp3" preload="auto"></audio>
 
     <script>
@@ -101,19 +166,19 @@
 
       let messageIndex = 0;
 
-      // เริ่มเล่นเพลงเมื่อกดปุ่ม
       startMusicButton.addEventListener("click", () => {
-        backgroundMusic.play(); // เริ่มเพลง
-        startMusicButton.style.display = "none"; // ซ่อนปุ่มเริ่มเพลง
-        typewriterContainer.style.display = "inline-block"; // แสดงข้อความ
-        typeMessage(); // เริ่มแสดงข้อความ
+        backgroundMusic.play();
+        startMusicButton.style.display = "none";
+        typewriterContainer.style.display = "inline-block";
+        typeMessage();
+        setInterval(createHeart, 500);
       });
 
       function typeMessage() {
         if (messageIndex < messages.length) {
           const message = messages[messageIndex];
           let charIndex = 0;
-          typewriterContainer.textContent = ""; // เคลียร์ข้อความเก่า
+          typewriterContainer.textContent = "";
 
           const typingInterval = setInterval(() => {
             typewriterContainer.textContent += message[charIndex];
@@ -122,14 +187,23 @@
             if (charIndex === message.length) {
               clearInterval(typingInterval);
               messageIndex++;
-              setTimeout(typeMessage, 1500); // รอ 1.5 วินาทีก่อนแสดงข้อความถัดไป
+              setTimeout(typeMessage, 1500);
             }
-          }, 100); // เพิ่มตัวอักษรทุก 0.1 วินาที
+          }, 100);
         }
       }
 
       function goBack() {
-        window.location.href = "home.html"; // ลิงก์ไปยังหน้าแรก
+        window.location.href = "home.html";
+      }
+
+      function createHeart() {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.top = Math.random() * 100 + "vh";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 3000);
       }
     </script>
   </body>

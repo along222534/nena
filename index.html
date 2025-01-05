@@ -15,97 +15,121 @@
       }
 
       body {
-        font-family: Arial, sans-serif;
+        font-family: "custom-font", Arial, sans-serif;
         background: linear-gradient(135deg, #e8f5e9, #a5d6a7);
         color: #2e7d32;
         margin: 0;
         padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        flex-direction: column;
         text-align: center;
-        overflow: hidden; /* ปิด scroll bar เพื่อให้ดูสะอาด */
       }
 
-      header,
-      .password-container,
-      footer {
-        display: none;
-      }
-
-      .countdown-container {
-        font-size: 2em;
+      #countdown {
+        font-size: 1.8em;
         font-weight: bold;
-        margin-top: 20%;
-        color: #43a047;
-        animation: fadeInDown 2s;
+        color: #388e3c;
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 15px 30px;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        animation: fadeInDown 2s ease;
+        margin-bottom: 20px;
       }
 
       header {
+        display: none;
         padding: 20px;
-        background-color: #1b5e20;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        animation: bounceIn 1.5s;
+        background-color: #2e7d32;
+        color: #fff;
+        border-radius: 20px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        animation: bounceIn 1.5s ease-out;
       }
 
       header h1 {
         margin: 0;
-        font-size: 2.8em;
-        color: #fff;
+        font-size: 2.5em;
       }
 
       .password-container {
-        margin-top: 50px;
-        animation: fadeInUp 2s ease-in-out;
+        display: none;
+        margin-top: 30px;
+        animation: fadeInUp 1.5s ease-in-out;
       }
 
-      input[type="password"],
-      input[type="text"] {
-        padding: 12px;
+      .password-container input {
+        padding: 15px;
         font-size: 1.2em;
+        width: 80%;
+        max-width: 300px;
         border: 1px solid #a5d6a7;
-        border-radius: 5px;
-        background-color: #f1f8e9;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        outline: none;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-      }
-
-      input[type="password"]:focus,
-      input[type="text"]:focus {
-        transform: scale(1.1);
-        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-      }
-
-      button {
-        padding: 12px 25px;
-        font-size: 1.1em;
-        color: white;
-        background: linear-gradient(135deg, #43a047, #2e7d32);
-        border: none;
         border-radius: 8px;
-        cursor: pointer;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        transition: background-color 0.3s ease, transform 0.2s ease;
+        background: rgba(255, 255, 255, 0.9);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        outline: none;
       }
 
-      button:hover {
-        background: linear-gradient(135deg, #66bb6a, #43a047);
-        transform: scale(1.1);
+      .password-container input:focus {
+        transform: scale(1.05);
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
       }
 
       .toggle-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         margin-top: 10px;
         font-size: 0.9em;
+        gap: 8px;
+      }
+
+      .toggle-container label {
+        display: flex;
+        align-items: center;
+        font-size: 1em;
+        color: #388e3c;
+        cursor: pointer;
+      }
+
+      .toggle-container input[type="checkbox"] {
+        margin-right: 8px;
+        cursor: pointer;
+      }
+
+      button {
+        margin-top: 20px;
+        padding: 12px 25px;
+        font-size: 1.1em;
+        background: linear-gradient(135deg, #66bb6a, #43a047);
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        transition: transform 0.3s ease, background 0.3s ease;
+      }
+
+      button:hover {
+        transform: scale(1.05);
+        background: linear-gradient(135deg, #81c784, #388e3c);
       }
 
       footer {
-        margin-top: 50px;
-        padding: 10px;
-        background-color: #1b5e20;
+        display: none;
+        margin-top: 30px;
+        padding: 15px;
+        background-color: #2e7d32;
         color: #fff;
-        box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.3);
-        animation: slideInUp 2s ease-in-out;
+        border-radius: 15px;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        animation: fadeInUp 2s ease;
       }
 
-      /* Keyframes for custom animation */
       @keyframes fadeInDown {
         from {
           opacity: 0;
@@ -139,15 +163,6 @@
         }
         100% {
           transform: scale(1);
-        }
-      }
-
-      @keyframes slideInUp {
-        from {
-          transform: translateY(100%);
-        }
-        to {
-          transform: translateY(0);
         }
       }
     </style>
@@ -195,42 +210,36 @@
 
       function togglePasswordVisibility() {
         const passwordField = document.getElementById("password");
-        const passwordToggle = document.getElementById("toggle-password");
-        passwordField.type = passwordToggle.checked ? "text" : "password";
+        const toggle = document.getElementById("toggle-password");
+        passwordField.type = toggle.checked ? "text" : "password";
       }
 
-      document.addEventListener("DOMContentLoaded", () => {
-        const passwordInput = document.getElementById("password");
-        passwordInput.addEventListener("keypress", (event) => {
-          if (event.key === "Enter") {
-            checkPassword();
-          }
-        });
-        startCountdown();
-      });
+      document.addEventListener("DOMContentLoaded", startCountdown);
     </script>
   </head>
   <body>
-    <div id="countdown" class="countdown-container">กำลังเริ่ม...</div>
+    <div id="countdown">กำลังเริ่ม...</div>
     <header>
-      <h1 class="animate__animated animate__heartBeat">🎁 Surprise 🎁</h1>
+      <h1>🎁 Surprise 🎁</h1>
     </header>
 
     <div class="password-container">
-      <p>กรอกรหัสผ่าน</p>
-      <input type="password" id="password" placeholder="00/00/0000" />
+      <input
+        type="password"
+        id="password"
+        placeholder="00/00/0000"
+        onkeypress="if(event.key === 'Enter') checkPassword()"
+      />
       <div class="toggle-container">
-        <label>
-          <input
-            type="checkbox"
-            id="toggle-password"
-            onclick="togglePasswordVisibility()"
-          />
-          แสดงรหัสผ่าน
-        </label>
+        <input
+          type="checkbox"
+          id="toggle-password"
+          onclick="togglePasswordVisibility()"
+        />
       </div>
       <button onclick="checkPassword()">คลิกเยยย</button>
     </div>
+
     <footer>❤️ ❤️ ❤️</footer>
   </body>
 </html>

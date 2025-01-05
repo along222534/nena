@@ -10,8 +10,8 @@
     />
     <style>
       body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background: linear-gradient(135deg, #e8f5e9, #a5d6a7);
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
         color: #388e3c;
         text-align: center;
         margin: 0;
@@ -20,73 +20,80 @@
       }
 
       header {
-        background-color: #a5d6a7;
-        padding: 20px 0;
-        border-bottom: 3px solid #81c784;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        background-color: #66bb6a;
+        padding: 30px 0;
+        border-bottom: 4px solid #43a047;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
       }
 
       header h1 {
-        font-size: 2.8em;
+        font-size: 3em;
         margin: 0;
-        color: #2e7d32;
-        animation: pulse 2s infinite;
+        color: white;
+        animation: pulse 1.5s infinite;
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
       }
 
       .content {
-        margin: 20px auto;
-        max-width: 600px;
+        margin: 40px auto;
+        max-width: 700px;
         padding: 20px;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        animation: fadeIn 1.5s ease;
       }
 
       img {
         max-width: 100%;
-        border-radius: 15px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        border-radius: 20px;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
         transition: transform 0.3s, box-shadow 0.3s;
       }
 
       img:hover {
-        transform: scale(1.1);
-        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.25);
+        transform: scale(1.05);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
       }
 
       button {
         font-size: 1.2em;
-        padding: 12px 25px;
+        padding: 12px 30px;
         background: linear-gradient(135deg, #66bb6a, #43a047);
         color: white;
         border: none;
-        border-radius: 8px;
+        border-radius: 25px;
         cursor: pointer;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         position: absolute;
-        top: 10px;
+        top: -30px;
         left: 50%;
         transform: translateX(-50%);
         z-index: 1;
-        transition: background-color 0.3s, box-shadow 0.3s, transform 0.2s;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
       }
 
       button:hover {
         background: linear-gradient(135deg, #4caf50, #388e3c);
-        transform: scale(1.1);
+        transform: translateX(-50%) scale(1.1);
         box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
       }
 
       audio {
-        margin-top: 20px;
+        margin: 20px 0;
         width: 100%;
-        border-radius: 5px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         outline: none;
       }
 
       p {
-        font-size: 2.2em;
+        font-size: 2.5em;
         color: #2e7d32;
         font-weight: bold;
-        text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+        margin-top: 30px;
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
         animation: bounce 2s infinite;
       }
 
@@ -108,6 +115,17 @@
           transform: translateY(-10px);
         }
       }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
     </style>
   </head>
   <body>
@@ -118,7 +136,7 @@
     <div class="content">
       <div style="position: relative; display: inline-block">
         <button onclick="goToGallery()">จุ๊บมั๊วว ❤️</button>
-        <img src="รูป.jpg" alt="รูปคู่" width="350" />
+        <img src="รูป.jpg" alt="รูปคู่" />
       </div>
       <audio controls autoplay>
         <source
