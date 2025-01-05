@@ -187,7 +187,7 @@
       }
 
       function checkPassword() {
-        const password = document.getElementById("password").value;
+        const password = document.getElementById("password").value.trim(); // ตัดช่องว่างออก
         const correctPassword = "15/09/2566";
         if (password === correctPassword) {
           Swal.fire({
@@ -229,6 +229,7 @@
         id="password"
         placeholder="00/00/0000"
         onkeypress="if(event.key === 'Enter') checkPassword()"
+        autocomplete="off"
       />
       <div class="toggle-container">
         <input
@@ -236,6 +237,7 @@
           id="toggle-password"
           onclick="togglePasswordVisibility()"
         />
+        <label for="toggle-password">แสดงรหัสผ่าน</label>
       </div>
       <button onclick="checkPassword()">คลิกเยยย</button>
     </div>
